@@ -42,6 +42,41 @@ HandleCheck exists to make that a paste a list and walk away task:
 
 In short, it is a lightweight lookup and monitoring utility for anyone who needs to check X account status or profile data for a *list* of accounts rather than a single one, and wants the result, and any changes over time, as a file instead of a series of manual searches.
 
+## 🚀 Getting Started
+
+### Requirements
+
+* **Windows 10 or Windows 11**
+* **Python 3.14** or a compatible Python 3 release
+* The dependencies listed in `requirements.txt`
+
+### Installation
+
+1. **Download the latest release**
+
+   * Visit the [Release Page](https://github.com/iteratequickly/Handle-Check/releases/tag/v1.0).
+   * Download the `handle-check-v1.0.zip` file.
+
+2. **Extract the ZIP file**
+
+   Extract the contents to a permanent location.
+
+3. **Open a terminal**
+
+   Open Command Prompt, PowerShell, or a terminal inside the extracted folder.
+
+4. **Install the required dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Launch HandleCheck**
+
+   ```bash
+   python main.py
+   ```
+
 ## ⚙️ How it works
 
 - **`main.py`**: the app's backend. It uses [`eel`](https://github.com/python-eel/Eel) to run a local Chrome-based window with an HTML/JS front end, and the [`twitter-username`](https://pypi.org/project/twitter-username/) package to resolve each query (username, URL, or ID) to account data.
