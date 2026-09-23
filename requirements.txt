@@ -1,0 +1,4 @@
+eel
+twitter-username
+python-dateutil
+reportlab

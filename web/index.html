@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HandleCheck</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/eel.js"></script>
+</head>
+<body>
+<div id="root">
+  <header>
+    <div class="header-left">
+      <h1 class="header-title">HandleCheck</h1>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" id="historyBtn">History</button>
+      <div class="export-menu">
+        <button class="header-btn export-menu-toggle" id="exportMenuBtn" aria-haspopup="true" aria-expanded="false">
+          Export <span class="export-menu-chevron">▾</span>
+        </button>
+        <div class="export-menu-dropdown" id="exportMenuDropdown" role="menu">
+          <button class="export-menu-item" id="exportPdfBtn" role="menuitem" disabled>PDF</button>
+          <button class="export-menu-item" id="exportJsonBtn" role="menuitem" disabled>JSON</button>
+          <button class="export-menu-item" id="exportCsvBtn" role="menuitem" disabled>CSV</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="main">
+    <aside class="left-panel">
+      <label class="input-label" for="queryBox">
+        Enter Twitter usernames, URLs, or user IDs (one per line):
+      </label>
+      <textarea id="queryBox" placeholder="e.g.&#10;&#10;https://x.com/elonmusk"></textarea>
+      <p class="input-hint">
+        Add more later and click Continue to check just the new ones. Click Reset to clear everything and start a new list.
+      </p>
+      <div class="control-row">
+        <button class="primary-btn" id="runBtn">Start Lookup</button>
+        <button class="stop-btn" id="stopBtn" disabled>Stop</button>
+        <button class="reset-btn" id="resetBtn" title="Clear all results and start a new list">Reset</button>
+      </div>
+      <div id="progressOuter">
+        <div id="progressInner"></div>
+      </div>
+      <div class="status-bar">
+        <span id="statusText">Ready</span>
+        <span id="delayText">Delay: —</span>
+      </div>
+      <div id="retryText"></div>
+    </aside>
+    <main class="right-panel">
+      <div class="results-header">
+        <div class="tabs">
+          <button class="tab" id="tab-map" data-filter="map">Profile Map</button>
+          <button class="tab active" id="tab-all" data-filter="all">All (<span id="count-all">0</span>)</button>
+          <button class="tab" id="tab-ok" data-filter="ok">Success (<span id="count-ok">0</span>)</button>
+          <button class="tab" id="tab-fail" data-filter="fail">Failed (<span id="count-fail">0</span>)</button>
+        </div>
+        <div class="retry-status" id="retryStatus"></div>
+      </div>
+      <div id="resultsContainer">
+        <div class="empty-state" id="emptyState">
+          <svg class="empty-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <p>No lookups performed yet. Enter targets on the left to begin.</p>
+        </div>
+      </div>
+      <div id="detailPane">
+        <div class="detail-header">
+          <div class="detail-tabs">
+            <button class="detail-tab active" id="detailTabProfile" onclick="switchDetailTab('profile')">Profile Detail</button>
+            <button class="detail-tab" id="detailTabJson" onclick="switchDetailTab('json')">Raw JSON</button>
+          </div>
+          <button class="detail-close" id="detailClose" title="Close">×</button>
+        </div>
+        <div class="detail-body">
+          <div id="detailContentProfile" class="profile-card"></div>
+          <pre id="detailContentJson" class="detail-content-section" style="display: none;"></pre>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div id="historyModalOverlay" class="modal-overlay">
+  <div id="historyModal" class="modal modal-full">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title">Lookup History</h2>
+        <p class="modal-subtitle" id="historyDbPath">Local database</p>
+      </div>
+      <button class="detail-close" id="historyModalClose" title="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-hint">
+        Every account ever looked up is remembered here, with every data point from its most recent check. Removing an account clears its saved history only; it does not affect X, and does not remove it from the results list on the left.
+      </p>
+      <div id="historyTableWrap">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Followers</th>
+              <th>Following</th>
+              <th>Posts</th>
+              <th>Media</th>
+              <th>Likes</th>
+              <th>Verified</th>
+              <th>Blue</th>
+              <th>Protected</th>
+              <th>Location</th>
+              <th>Bio</th>
+              <th>Website</th>
+              <th>Account created</th>
+              <th>First checked</th>
+              <th>Last checked</th>
+              <th>Checks</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody"></tbody>
+        </table>
+        <div class="empty-state" id="historyEmptyState" style="display: none;">
+          <p>No accounts recorded yet.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span id="historyStatus"></span>
+      <button class="stop-btn" id="clearHistoryBtn">Clear all history</button>
+    </div>
+  </div>
+</div>
+<script src="/script.js"></script>
+</body>
+</html>
