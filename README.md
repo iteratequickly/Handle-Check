@@ -131,31 +131,6 @@ The **Export** menu in the header contains **PDF**, **JSON**, and **CSV**:
 - **JSON** exports the full result list as-is, including the nested profile data object for each account.
 - **CSV** exports one flattened row per lookup (see Exported fields below).
 
-## 📦 Requirements
-
-```
-eel
-twitter-username
-python-dateutil
-reportlab
-```
-
-`history.py` also uses `sqlite3`, `json`, and `hashlib` from the Python standard library, so those need no extra install.
-
-Install the requirements with:
-
-```bash
-pip install -r requirements.txt
-```
-
-Then run:
-
-```bash
-python main.py
-```
-
-**Note:** the window-size-locking behaviour (a fixed, non-resizable window, sized at 1100x700) in `main.py` only applies on Windows (`os.name == "nt"`); on other platforms the window uses default Eel/Chrome sizing.
-
 ## 📊 Exported fields
 
 CSV exports include one flattened row per lookup: query, status, whether it succeeded, error detail, user ID, screen name, display name, bio/description, location, website URL, account creation date, account age in days, follower/following/tweet/media/favourites counts, verified/blue-verified/protected flags, the delta summary of what changed since the last check, and the SHA-256 snapshot hash.
