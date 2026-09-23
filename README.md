@@ -1,6 +1,20 @@
 # 🔍 HandleCheck
 
+<p align="center">
+  <strong>Check Twitter/X handles in bulk, quickly, locally, and effortlessly.</strong>
+</p>
+
 A small Windows desktop app for **batch-checking X (Twitter) accounts** (usernames, profile URLs, or numeric user IDs), tracking how they change over time, and exporting the results to CSV, JSON, or a PDF report.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/iteratequickly/Handle-Check/v1.0/total.svg?label=Downloads)](https://github.com/iteratequickly/Handle-Check/releases/tag/v1.0)
+[![GitHub Release](https://img.shields.io/github/v/release/iteratequickly/Handle-Check)](https://github.com/iteratequickly/Handle-Check/releases)
+[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://github.com/iteratequickly/Handle-Check)
+[![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
+
+<p align="center">
+  <img src="https://github.com/iteratequickly/Handle-Check/blob/main/assets/banner.png" alt="HandleCheck Preview" width="800">
+</p>
 
 ## ⚠️ Disclaimer
 
